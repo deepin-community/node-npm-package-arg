@@ -1,0 +1,63 @@
+node-npm-package-arg (8.1.5-1) unstable; urgency=medium
+
+  * Team upload
+  * Update standards version to 4.6.0, no changes needed
+  * Fix GitHub tags regex
+  * Fix filenamemangle
+  * Drop dependency to nodejs
+  * New upstream version 8.1.5
+  * Require node-hosted-git-info ≥ 4.0.2~
+  * Fix test for tap < 15
+
+ -- Yadd <yadd@debian.org>  Tue, 09 Nov 2021 14:01:30 +0100
+
+node-npm-package-arg (8.1.0-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Bug-Submit.
+  * Update standards version to 4.5.0, no changes needed.
+
+  [ Xavier Guimard ]
+  * Bump debhelper compatibility level to 13
+  * Declare compliance with policy 4.5.1
+  * Modernize debian/watch
+  * Use dh-sequence-nodejs
+  * New upstream version 8.1.0
+  * Update copyright
+
+ -- Xavier Guimard <yadd@debian.org>  Fri, 27 Nov 2020 13:05:49 +0100
+
+node-npm-package-arg (6.1.1-1) unstable; urgency=medium
+
+  * Team upload
+  * Bump debhelper compatibility level to 12
+  * Declare compliance with policy 4.4.1
+  * Add "Rules-Requires-Root: no"
+  * Add debian/gbp.conf
+  * Add upstream/metadata
+  * Use pkg-js-tools test & install
+  * New upstream version 6.1.1
+  * Update copyright
+
+ -- Xavier Guimard <yadd@debian.org>  Wed, 08 Jan 2020 06:01:17 +0100
+
+node-npm-package-arg (6.0.0-2) unstable; urgency=medium
+
+  [ Paolo Greppi ]
+  * Update Vcs fields for migration to https://salsa.debian.org/
+
+  [ Pirate Praveen ]
+  * Bump debhelper compatibility level to 11
+  * Bump Standards-Version to 4.2.1 (no changes needed)
+  * Update dependencies to allow backports
+  * Enable nocheck build profile
+
+ -- Pirate Praveen <praveen@debian.org>  Mon, 17 Sep 2018 17:46:04 +0530
+
+node-npm-package-arg (6.0.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #881316)
+
+ -- Pirate Praveen <praveen@debian.org>  Fri, 10 Nov 2017 13:07:02 +0530

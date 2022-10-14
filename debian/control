@@ -1,0 +1,33 @@
+Source: node-npm-package-arg
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: Pirate Praveen <praveen@debian.org>
+Section: javascript
+Testsuite: autopkgtest-pkg-nodejs
+Priority: optional
+Build-Depends:
+ debhelper-compat (= 13)
+ , dh-sequence-nodejs
+ , node-tap <!nocheck>
+ , node-hosted-git-info (>= 4.0.2~) <!nocheck>
+ , node-osenv <!nocheck>
+ , node-semver <!nocheck>
+ , node-validate-npm-package-name <!nocheck>
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/js-team/node-npm-package-arg
+Vcs-Git: https://salsa.debian.org/js-team/node-npm-package-arg.git
+Homepage: https://github.com/npm/npm-package-arg
+Rules-Requires-Root: no
+
+Package: node-npm-package-arg
+Architecture: all
+Depends:
+ ${misc:Depends}
+ , node-hosted-git-info (>= 4.0.2~)
+ , node-osenv
+ , node-semver
+ , node-validate-npm-package-name
+Description: Parse the things that can be arguments to npm install
+ Parses package name and specifier passed to commands like npm install or
+ npm cache add, or as found in package.json dependency sections.
+ .
+ Node.js is an event-based server-side JavaScript engine.

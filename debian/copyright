@@ -2,6 +2,7 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: npm-package-arg
 Upstream-Contact: https://github.com/npm/npm-package-arg/issues
 Source: https://github.com/npm/npm-package-arg
+ https://github.com/npm/proc-log/tags
 
 Files: *
 Copyright: npm, Inc
@@ -9,7 +10,11 @@ License: ISC
 
 Files: debian/*
 Copyright: 2017, Pirate Praveen <praveen@debian.org>
- 2020, Yadd <yadd@debian.org>
+ 2020-2022, Yadd <yadd@debian.org>
+License: ISC
+
+Files: proc-log/*
+Copyright: GitHub, Inc.
 License: ISC
 
 License: ISC

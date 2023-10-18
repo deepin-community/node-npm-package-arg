@@ -7,12 +7,12 @@ Priority: optional
 Build-Depends:
  debhelper-compat (= 13)
  , dh-sequence-nodejs
- , node-tap <!nocheck>
  , node-hosted-git-info (>= 4.0.2~) <!nocheck>
  , node-osenv <!nocheck>
  , node-semver <!nocheck>
+ , node-tap (>= 15) <!nocheck>
  , node-validate-npm-package-name <!nocheck>
-Standards-Version: 4.6.0
+Standards-Version: 4.6.1
 Vcs-Browser: https://salsa.debian.org/js-team/node-npm-package-arg
 Vcs-Git: https://salsa.debian.org/js-team/node-npm-package-arg.git
 Homepage: https://github.com/npm/npm-package-arg
@@ -26,6 +26,7 @@ Depends:
  , node-osenv
  , node-semver
  , node-validate-npm-package-name
+Provides: ${nodejs:Provides}
 Description: Parse the things that can be arguments to npm install
  Parses package name and specifier passed to commands like npm install or
  npm cache add, or as found in package.json dependency sections.

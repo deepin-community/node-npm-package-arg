@@ -12,7 +12,7 @@ const normalizePaths = spec => {
 }
 
 const t = require('tap')
-const npa = t.mock('../npa.js', { path })
+const npa = t.mock('..', { path })
 t.on('bailout', () => process.exit(1))
 
 t.test('basic', function (t) {
@@ -44,10 +44,10 @@ t.test('basic', function (t) {
       name: '@foo/bar',
       escapedName: '@foo%2fbar',
       scope: '@foo',
-      rawSpec: '',
+      rawSpec: '*',
       saveSpec: null,
-      fetchSpec: 'latest',
-      type: 'tag',
+      fetchSpec: '*',
+      type: 'range',
     },
 
     '@foo/bar@': {
@@ -55,10 +55,10 @@ t.test('basic', function (t) {
       name: '@foo/bar',
       escapedName: '@foo%2fbar',
       scope: '@foo',
-      rawSpec: '',
+      rawSpec: '*',
       saveSpec: null,
-      fetchSpec: 'latest',
-      type: 'tag',
+      fetchSpec: '*',
+      type: 'range',
     },
 
     '@foo/bar@baz': {
@@ -113,11 +113,11 @@ t.test('basic', function (t) {
         registry: true,
         name: 'bar',
         escapedName: 'bar',
-        type: 'tag',
+        type: 'range',
         raw: 'bar',
-        rawSpec: '',
+        rawSpec: '*',
         saveSpec: null,
-        fetchSpec: 'latest',
+        fetchSpec: '*',
       },
     },
 
@@ -298,6 +298,41 @@ t.test('basic', function (t) {
       raw: 'user/foo#semver:^1.2.3',
     },
 
+    'user/foo#path:dist': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'github:user/foo#path:dist',
+      fetchSpec: null,
+      gitCommittish: null,
+      gitSubdir: '/dist',
+      raw: 'user/foo#path:dist',
+    },
+
+    'user/foo#1234::path:dist': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'github:user/foo#1234::path:dist',
+      fetchSpec: null,
+      gitCommittish: '1234',
+      gitRange: null,
+      gitSubdir: '/dist',
+      raw: 'user/foo#1234::path:dist',
+    },
+
+    'user/foo#notimplemented:value': {
+      name: null,
+      escapedName: null,
+      type: 'git',
+      saveSpec: 'github:user/foo#notimplemented:value',
+      fetchSpec: null,
+      gitCommittish: null,
+      gitRange: null,
+      gitSubdir: null,
+      raw: 'user/foo#notimplemented:value',
+    },
+
     'git+file://path/to/repo#1.2.3': {
       name: null,
       escapedName: null,
@@ -331,10 +366,10 @@ t.test('basic', function (t) {
       name: 'git',
       type: 'alias',
       subSpec: {
-        type: 'tag',
+        type: 'range',
         registry: true,
         name: 'not-git',
-        fetchSpec: 'latest',
+        fetchSpec: '*',
       },
       raw: 'git@npm:not-git',
     },
@@ -426,6 +461,33 @@ t.test('basic', function (t) {
       raw: 'file:/.path/to/foo',
     },
 
+    'file:./path/to/foo': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:path/to/foo',
+      fetchSpec: '/test/a/b/path/to/foo',
+      raw: 'file:./path/to/foo',
+    },
+
+    'file:/./path/to/foo': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:path/to/foo',
+      fetchSpec: '/test/a/b/path/to/foo',
+      raw: 'file:/./path/to/foo',
+    },
+
+    'file://./path/to/foo': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:path/to/foo',
+      fetchSpec: '/test/a/b/path/to/foo',
+      raw: 'file://./path/to/foo',
+    },
+
     'file:../path/to/foo': {
       name: null,
       escapedName: null,
@@ -442,6 +504,15 @@ t.test('basic', function (t) {
       saveSpec: 'file:../path/to/foo',
       fetchSpec: '/test/a/path/to/foo',
       raw: 'file:/../path/to/foo',
+    },
+
+    'file://../path/to/foo': {
+      name: null,
+      escapedName: null,
+      type: 'directory',
+      saveSpec: 'file:../path/to/foo',
+      fetchSpec: '/test/a/path/to/foo',
+      raw: 'file://../path/to/foo',
     },
 
     'file:///path/to/foo': {
@@ -482,6 +553,7 @@ t.test('basic', function (t) {
       escapedName: null,
       type: 'directory',
       saveSpec: 'file:',
+      fetchSpec: '/test/a/b',
       raw: 'file://.',
     },
 
@@ -515,9 +587,9 @@ t.test('basic', function (t) {
     foo: {
       name: 'foo',
       escapedName: 'foo',
-      type: 'tag',
+      type: 'range',
       saveSpec: null,
-      fetchSpec: 'latest',
+      fetchSpec: '*',
       raw: 'foo',
     },
 
@@ -677,7 +749,7 @@ t.test('strict 8909 compliance mode', t => {
   // actually fail to parse.  it seems like it accepts any garbage you can
   // throw at it.  However, because it theoretically CAN throw, here's a test.
   t.throws(() => {
-    const npa = t.mock('../npa.js', {
+    const broken = t.mock('..', {
       url: {
         URL: class {
           constructor () {
@@ -686,9 +758,43 @@ t.test('strict 8909 compliance mode', t => {
         },
       },
     })
-    npa('file:thansk i haet it')
+    broken('file:thansk i haet it')
   }, {
     message: 'Invalid file: URL, must comply with RFC 8909',
+  })
+
+  t.end()
+})
+
+t.test('error message', t => {
+  t.throws(() => npa('lodash.has@>=^4'), {
+    // eslint-disable-next-line max-len
+    message: 'Invalid tag name ">=^4" of package "lodash.has@>=^4": Tags may not have any characters that encodeURIComponent encodes.',
+  })
+
+  t.throws(() => npa('lodash.has @^4'), {
+    // eslint-disable-next-line max-len
+    message: 'Invalid package name "lodash.has " of package "lodash.has @^4": name cannot contain leading or trailing spaces; name can only contain URL-friendly characters.',
+  })
+
+  t.throws(() => npa('user/foo#1234::semver:^1.2.3'), {
+    message: 'cannot override existing committish with a semver range',
+  })
+
+  t.throws(() => npa('user/foo#semver:^1.2.3::1234'), {
+    message: 'cannot override existing semver range with a committish',
+  })
+
+  t.throws(() => npa('user/foo#path:skipped::path:dist'), {
+    message: 'cannot override existing path with a second path',
+  })
+
+  t.throws(() => npa('user/foo#1234::5678'), {
+    message: 'cannot override existing committish with a second committish',
+  })
+
+  t.throws(() => npa('user/foo#semver:^1.0.0::semver:^2.0.0'), {
+    message: 'cannot override existing semver range with a second semver range',
   })
 
   t.end()

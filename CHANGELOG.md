@@ -1,6 +1,70 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+## [10.0.0](https://github.com/npm/npm-package-arg/compare/v9.1.0...v10.0.0) (2022-10-18)
+
+### ⚠️ BREAKING CHANGES
+
+* `x` and `x@` now return the same spec as `x@*`
+* `npm-package-arg` is now compatible with the following semver range for node: `^14.17.0 || ^16.13.0 || >=18.0.0`
+
+### Features
+
+* [`749ccad`](https://github.com/npm/npm-package-arg/commit/749ccad1516e0e61db989669326165bfdb6b7227) [#104](https://github.com/npm/npm-package-arg/pull/104) postinstall for dependabot template-oss PR (@lukekarrys)
+
+### Bug Fixes
+
+* [`d2b87c0`](https://github.com/npm/npm-package-arg/commit/d2b87c083f6f83d01d869281631a0d544190edcf) [#97](https://github.com/npm/npm-package-arg/pull/97) standardize `x` `x@` and `x@*` (#97) (@wraithgar)
+* [`7b9cb25`](https://github.com/npm/npm-package-arg/commit/7b9cb25e2b2788ae7b0c9a9b33ca8701a030b8aa) [#108](https://github.com/npm/npm-package-arg/pull/108) resolve relative urls that start with file:// (@lukekarrys)
+
+### Dependencies
+
+* [`b3f0b93`](https://github.com/npm/npm-package-arg/commit/b3f0b93abae31e8e3a186c5f6ebedd3616b0764a) [#117](https://github.com/npm/npm-package-arg/pull/117) bump proc-log from 2.0.1 to 3.0.0 (#117)
+* [`7162848`](https://github.com/npm/npm-package-arg/commit/71628486d9f96ef522e28cb32e15ff8d26cf3903) [#116](https://github.com/npm/npm-package-arg/pull/116) bump validate-npm-package-name from 4.0.0 to 5.0.0 (#116)
+* [`3110d8f`](https://github.com/npm/npm-package-arg/commit/3110d8f954a76e237649bd478d0cb2fbc95f6afc) [#115](https://github.com/npm/npm-package-arg/pull/115) `hosted-git-info@6.0.0` (#115)
+
+## [9.1.0](https://github.com/npm/npm-package-arg/compare/v9.0.2...v9.1.0) (2022-06-22)
+
+
+### Features
+
+* **git:** add support for :: in #committish ([#91](https://github.com/npm/npm-package-arg/issues/91)) ([246f1e9](https://github.com/npm/npm-package-arg/commit/246f1e919bd19302bbb907acbe87735f61392a9a))
+
+### [9.0.2](https://github.com/npm/npm-package-arg/compare/v9.0.1...v9.0.2) (2022-03-29)
+
+
+### Dependencies
+
+* bump validate-npm-package-name from 3.0.0 to 4.0.0 ([#83](https://github.com/npm/npm-package-arg/issues/83)) ([05f40c5](https://github.com/npm/npm-package-arg/commit/05f40c512326c0047ef31259ddc231fc81d9a187))
+
+### [9.0.1](https://www.github.com/npm/npm-package-arg/compare/v9.0.0...v9.0.1) (2022-03-15)
+
+
+### Dependencies
+
+* bump hosted-git-info from 4.1.0 to 5.0.0 ([#75](https://www.github.com/npm/npm-package-arg/issues/75)) ([c26876d](https://www.github.com/npm/npm-package-arg/commit/c26876d116285c8ab6a91f223b679155c91e60a0))
+
+## [9.0.0](https://www.github.com/npm/npm-package-arg/compare/v8.1.5...v9.0.0) (2022-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This drops support for node10 and non-LTS versions of node 12 and node 14.
+
+### Bug Fixes
+
+* make error message more clear to locate which package is invalid ([8cb4527](https://www.github.com/npm/npm-package-arg/commit/8cb452760e9e0d7921ea59a1e4d3ec3db7994595))
+
+
+### Dependencies
+
+* @npmcli/template-oss@2.7.1 ([6975264](https://www.github.com/npm/npm-package-arg/commit/6975264f553471a21b4bb313290c226eb3aa8da3))
+* update hosted-git-info requirement from ^4.0.1 to ^4.1.0 ([c6a9e12](https://www.github.com/npm/npm-package-arg/commit/c6a9e12c67d4209118dfabe6e110ece64a0ad1b7))
+* update semver requirement from ^7.3.4 to ^7.3.5 ([73fc02e](https://www.github.com/npm/npm-package-arg/commit/73fc02e91ba887201880d37be81838df9b161f05))
+
+
+### Documentation
+
+* Update result object documentation for type=alias ([55907a9](https://www.github.com/npm/npm-package-arg/commit/55907a917979e566250428dc6da9aad8fd4fb65a))
 
 ## [8.0.0](https://github.com/npm/npm-package-arg/compare/v7.0.0...v8.0.0) (2019-12-15)
 

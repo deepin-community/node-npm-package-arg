@@ -1,6 +1,6 @@
 'use strict'
 var test = require('tap').test
-var npa = require('../npa.js')
+var npa = require('..')
 
 test('realize-package-specifier', function (t) {
   t.plan(6)
@@ -8,7 +8,7 @@ test('realize-package-specifier', function (t) {
   result = npa('a.tar.gz', '/test/a/b')
   t.equal(result.type, 'file', 'local tarball')
   result = npa('d', '/test/a/b')
-  t.equal(result.type, 'tag', 'remote package')
+  t.equal(result.type, 'range', 'remote package')
   result = npa('file:./a.tar.gz', '/test/a/b')
   t.equal(result.type, 'file', 'local tarball')
   result = npa('file:./b', '/test/a/b')
